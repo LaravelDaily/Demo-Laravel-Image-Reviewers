@@ -29,6 +29,9 @@
                             {{ trans('cruds.photo.fields.photo') }}
                         </th>
                         <th>
+                            {{ trans('cruds.photo.fields.approved') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -48,6 +51,9 @@
                                         <img src="{{ $photo->photo->getUrl() }}" width="150px">
                                     </a>
                                 @endif
+                            </td>
+                            <td>
+                                {{ $photo->approved_at ? 'Yes' : 'No' }}
                             </td>
                             <td>
                                 @can('photo_show')

@@ -39,6 +39,7 @@ class User extends Authenticatable
         'deleted_at',
         'remember_token',
         'email_verified_at',
+        'reviewer_id',
     ];
 
     public function __construct(array $attributes = [])

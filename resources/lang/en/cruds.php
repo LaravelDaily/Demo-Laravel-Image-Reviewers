@@ -68,6 +68,7 @@ return [
     'photo'          => [
         'title'          => 'Photos',
         'title_singular' => 'Photo',
+        'review'         => 'Photos for Review',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => '',
@@ -75,6 +76,10 @@ return [
             'title_helper'      => '',
             'photo'             => 'Photo',
             'photo_helper'      => '',
+            'approved'          => 'Approved',
+            'approved_helper'   => '',
+            'reviewer'          => 'Reviewer',
+            'reviewer_helper'   => '',
             'created_at'        => 'Created at',
             'created_at_helper' => '',
             'updated_at'        => 'Updated at',

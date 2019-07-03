@@ -20,6 +20,13 @@ class RolesTableSeeder extends Seeder
                 'created_at' => '2019-06-30 14:24:02',
                 'updated_at' => '2019-06-30 14:24:02',
                 'deleted_at' => null,
+            ],
+            [
+                'id'         => 3,
+                'title'      => 'Reviewer',
+                'created_at' => '2019-06-30 14:24:02',
+                'updated_at' => '2019-06-30 14:24:02',
+                'deleted_at' => null,
             ]];
 
         Role::insert($roles);

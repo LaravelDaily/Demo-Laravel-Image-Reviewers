@@ -132,6 +132,12 @@ class PermissionsTableSeeder extends Seeder
                 'title'      => 'photo_access',
                 'created_at' => '2019-06-30 14:24:02',
                 'updated_at' => '2019-06-30 14:24:02',
+            ],
+            [
+                'id'         => '22',
+                'title'      => 'photo_review',
+                'created_at' => '2019-06-30 14:24:02',
+                'updated_at' => '2019-06-30 14:24:02',
             ]];
 
         Permission::insert($permissions);

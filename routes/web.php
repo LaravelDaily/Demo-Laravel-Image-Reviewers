@@ -26,4 +26,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('photos', 'PhotosController');
 
     Route::post('photos/media', 'PhotosController@storeMedia')->name('photos.storeMedia');
+
+    Route::get('review', 'PhotosController@indexReview')->name('photos.indexReview'); 
 });

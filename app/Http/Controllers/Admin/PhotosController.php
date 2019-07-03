@@ -8,6 +8,8 @@ use App\Http\Requests\MassDestroyPhotoRequest;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Photo;
+use App\Role;
+use Carbon\Carbon;
 
 class PhotosController extends Controller
 {
@@ -47,13 +49,16 @@ class PhotosController extends Controller
         abort_unless(\Gate::allows('photo_edit'), 403);
 
         $photo->load('created_by');
+        $reviewers = Role::findOrFail(3)->users()->get();
 
-        return view('admin.photos.edit', compact('photo'));
+        return view('admin.photos.edit', compact('photo', 'reviewers'));
     }
 
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
         abort_unless(\Gate::allows('photo_edit'), 403);
+
+        $request['approved_at'] = $request->input('approved_at', false) ? Carbon::now()->toDateTimeString() : null;
 
         $photo->update($request->all());
 
@@ -91,5 +96,14 @@ class PhotosController extends Controller
         Photo::whereIn('id', request('ids'))->delete();
 
         return response(null, 204);
+    }
+
+    public function indexReview()
+    {
+        abort_unless(\Gate::allows('photo_review'), 403);
+
+        $photos = Photo::reviewersPhotos()->get();
+
+        return view('admin.photos.index', compact('photos'));
     }
 }

@@ -21,7 +21,11 @@ trait MultiTenantModelTrait
             });
             if (!$isAdmin) {
                 static::addGlobalScope('created_by_id', function (Builder $builder) {
-                    $builder->where('created_by_id', auth()->id())->orWhereNull('created_by_id');
+                    $builder->where('created_by_id', auth()->id())
+                        ->orWhereNull('created_by_id')
+                        ->when(!request()->is('admin/photos'), function ($query) {
+                            return $query->orWhere('reviewer_id', auth()->id());
+                        });
                 });
             }
         }

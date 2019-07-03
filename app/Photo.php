@@ -18,6 +18,7 @@ class Photo extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
+        'approved_at',
     ];
 
     protected $fillable = [
@@ -26,6 +27,8 @@ class Photo extends Model implements HasMedia
         'updated_at',
         'deleted_at',
         'created_by_id',
+        'approved_at',
+        'reviewer_id',
     ];
 
     public function getphotoAttribute()
@@ -42,5 +45,15 @@ class Photo extends Model implements HasMedia
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    public function reviewer()
+    {
+        return $this->belongsTo(User::class, 'reviewer_id');
+    }
+
+    public function scopeReviewersPhotos($query)
+    {
+        return $query->where('reviewer_id', auth()->id());
     }
 }

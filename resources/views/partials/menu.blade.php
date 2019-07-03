@@ -54,7 +54,7 @@
             @endcan
             @can('photo_access')
                 <li class="nav-item">
-                    <a href="{{ route("admin.photos.index") }}" class="nav-link {{ request()->is('admin/photos') || request()->is('admin/photos/*') ? 'active' : '' }}">
+                    <a href="{{ route("admin.photos.index") }}" class="nav-link {{ request()->is('admin/photos') || request()->is('admin/photos/*') && !request()->is('admin/photos/review') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-cogs nav-icon">
 
                         </i>
@@ -62,6 +62,16 @@
                     </a>
                 </li>
             @endcan
+            @if(auth()->user()->roles->contains(3))
+                <li class="nav-item">
+                    <a href="{{ route("admin.photos.indexReview") }}" class="nav-link {{ request()->is('admin/photos/review') ? 'active' : '' }}">
+                        <i class="fa-fw fas fa-search nav-icon">
+
+                        </i>
+                        {{ trans('cruds.photo.review') }}
+                    </a>
+                </li>
+            @endif
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">

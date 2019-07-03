@@ -36,6 +36,36 @@
                     {{ trans('cruds.photo.fields.photo_helper') }}
                 </p>
             </div>
+            @can('user_management_access')
+                <div class="form-group">
+                    <label for="reviewer">{{ trans('cruds.photo.fields.reviewer') }}</label>
+                    <select class="form-control {{ $errors->has('reviewer_id') ? 'has-error' : '' }}" id="reviewer" name="reviewer_id">
+                        <option value="">-</option>
+                        @foreach($reviewers as $reviewer)
+                            <option value="{{ $reviewer->id }}"  @if(isset($photo) && $photo->reviewer_id == $reviewer->id) selected @endif>{{ $reviewer->name }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('reviewer_id'))
+                        <em class="invalid-feedback">
+                            {{ $errors->first('reviewer_id') }}
+                        </em>
+                    @endif
+                    <p class="helper-block">
+                        {{ trans('cruds.photo.fields.reviewer_helper') }}
+                    </p>
+                </div>
+            @endcan
+            @can('photo_review')
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="approved" name="approved_at" @if(isset($photo->approved_at)) checked @endif>
+                        <label for="approved" class="form-check-label">{{ trans('cruds.photo.fields.approved') }}</label>
+                    </div>
+                    <p class="helper-block">
+                        {{ trans('cruds.photo.fields.approved_helper') }}
+                    </p>
+                </div>
+            @endcan
             <div>
                 <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
             </div>

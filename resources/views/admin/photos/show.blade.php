@@ -22,6 +22,21 @@
                         <th>
                             {{ trans('cruds.photo.fields.photo') }}
                         </th>
+                        <td>
+                            @if($photo->photo)
+                                <a href="{{ $photo->photo->getUrl() }}" target="_blank">
+                                    <img src="{{ $photo->photo->getUrl() }}" width="150px">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.photo.fields.approved') }}
+                        </th>
+                        <td>
+                            {{ $photo->approved_at ? 'Yes' : 'No' }}
+                        </td>
                     </tr>
                 </tbody>
             </table>
