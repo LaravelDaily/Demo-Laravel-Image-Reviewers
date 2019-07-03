@@ -23,9 +23,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::delete('photos/destroy', 'PhotosController@massDestroy')->name('photos.massDestroy');
 
-    Route::resource('photos', 'PhotosController');
+    Route::get('photos/review', 'PhotosController@indexReview')->name('photos.indexReview'); 
 
     Route::post('photos/media', 'PhotosController@storeMedia')->name('photos.storeMedia');
 
-    Route::get('review', 'PhotosController@indexReview')->name('photos.indexReview'); 
+    Route::resource('photos', 'PhotosController');
 });
