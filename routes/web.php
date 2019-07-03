@@ -1,6 +1,6 @@
 <?php
 
-Route::redirect('/', '/login');
+Route::get('/', 'FrontController@index')->name('front.home');
 
 Route::redirect('/home', '/admin');
 

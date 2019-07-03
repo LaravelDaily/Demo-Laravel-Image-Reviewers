@@ -56,4 +56,9 @@ class Photo extends Model implements HasMedia
     {
         return $query->where('reviewer_id', auth()->id());
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->whereNotNull('approved_at');
+    }
 }
