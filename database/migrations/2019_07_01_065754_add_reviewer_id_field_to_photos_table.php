@@ -15,7 +15,7 @@ class AddReviewerIdFieldToPhotosTable extends Migration
     {
         Schema::table('photos', function (Blueprint $table) {
             $table->unsignedInteger('reviewer_id')->nullable();
-            $table->foreign('reviewer_id', 'reviewer_id_fk_146357')->references('id')->on('photos');
+            $table->foreign('reviewer_id', 'reviewer_id_fk_146357')->references('id')->on('users');
         });
     }
 

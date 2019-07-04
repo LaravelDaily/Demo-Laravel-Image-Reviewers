@@ -62,7 +62,7 @@
                     </a>
                 </li>
             @endcan
-            @if(auth()->user()->roles->contains(3))
+            @can('photo_review')
                 <li class="nav-item">
                     <a href="{{ route("admin.photos.indexReview") }}" class="nav-link {{ request()->is('admin/photos/review') ? 'active' : '' }}">
                         <i class="fa-fw fas fa-search nav-icon">
@@ -71,7 +71,7 @@
                         {{ trans('cruds.photo.review') }}
                     </a>
                 </li>
-            @endif
+            @endcan
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">
